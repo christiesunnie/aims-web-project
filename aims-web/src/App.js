@@ -1,13 +1,13 @@
-import './App.css';
+import "./App.css";
+import SideBySideCalendar from "./components/Calendar/SideBySide";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Welcome to AIMS project!
-        </p>
-      </header>
+      <h1 className="text-3xl font-bold underline text-indigo-400">
+        Welcome to AIMS projec!
+      </h1>
+      <SideBySideCalendar/>
     </div>
   );
 }
