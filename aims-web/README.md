@@ -68,3 +68,55 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### React Best Practices
+
+•	Keep your components small and reusable. This will make your code more modular and easier to maintain.
+•	Use functional components instead of class components whenever possible. Functional components are simpler and easier to read.
+•	Use hooks (such as useState and useEffect) to manage state and side effects.
+•	Use PropTypes or TypeScript to type check your props and state.
+•	Avoid using inline styles.
+•	Follow the "one responsibility per file" rule. Each file preferebaly should contain only one component or module.
+•	Use meaningful names for your components and variables.
+•	Write tests for your components and functionality.
+
+### Naming Conventions
+
+•	Component names should start with a capital letter. This makes it easy to distinguish between components and regular HTML elements when reading the code. For example, MyComponent instead of myComponent.
+•	Use descriptive, meaningful names for components. This helps to make your code more readable and maintainable. For example, LoginForm instead of Login.
+•	Use camelCase for prop names. This is consistent with JavaScript naming conventions. For example, userName instead of username.
+•	Use kebab-case for CSS class names. This is a common convention in CSS. For example, button-primary instead of buttonPrimary.
+•	Use a consistent naming convention for files. For example, you might choose to use PascalCase for component files (MyComponent.js) and kebab-case for other files (app.css).
+•	Use prefixes or suffixes to indicate the type of file. For example, you might use ComponentName.js for component files, index.js for index files, and styles.css for CSS files.
+
+
+
+## State management
+
+A list of useful documentation about conventions in state management.
+
+## Preface
+
+We are using [Redux](https://redux.js.org/api) a state management tool to centralize the state in amis-web application. The state of the application is updated unidirectional by actions. Actions must be descriptive and should included all the needed information to make debugging easier. The view layer uses actions to request an update to the state and they get informed if there is any updates in any part of the sta
+
+### Actions
+
+Actions are plain object (for serialization purposes). Actions must have at least `type` property that must be unique per application. Keep in mind that any data type that is not serializable (including classes and functions) should NOT be part of actions and their payloads.
+
+If you want to know more about actions in Redux library you should read [this docs](https://redux.js.org/basics/actions).
+
+### Action creators
+
+Action creators are plain functions that accept some arguments, structure the body of action and return plain objects that comply to Redux model. Action creators are not necessary but make the job easier to create standard actions.
+
+If you want to know more about action creators in Redux library you should read [this docs](https://redux.js.org/basics/actions#action-creators).
+
+#### Naming convention
+
+Action creators usually have a simple name to describe their use-case. Look at the below list to examples:
+
+-   Simple interactions:
+    It would have only one action that takes an object as its argument and update the model accordingly. Usually prefixed with `update` for example `updateMyForm({ myFirstField: 'my-name' })`
+-   Interaction with API and BE resources:
+    Fetching/Adding/Updating/Deleting backend resources via API is never 100% guaranteed that is why actions for such these interactions are scenario-like that have multiple steps.
+    First action is a normal and then it follows up with others to complete the scenario. We suffix the following ones with appropriate terms (such as `success` or `fail` to emphasize the result.)
