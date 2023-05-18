@@ -1,11 +1,9 @@
-import "./App.css";
-
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline text-indigo-400">
-        Welcome to AIMS projec!
-      </h1>
+    <div className='grid place-items-center'>
+      <header className='mt-10'>
+        <p>Welcome to AIMS project!</p>
+      </header>
     </div>
   );
 }
