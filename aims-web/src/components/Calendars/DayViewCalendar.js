@@ -16,10 +16,15 @@ import TransitionComponent from '../../UI/TransitionComponent';
 import ScheduleItems from '../Events/ScheduleItems';
 import WholeMonthCalendar from './WholeMonthCalendar';
 
+import { startOfToday, format } from 'date-fns';
+
 export default function DayViewCalendar() {
   const container = useRef(null);
   const containerNav = useRef(null);
   const containerOffset = useRef(null);
+
+  const today = startOfToday();
+  console.log(today);
 
   useEffect(() => {
     // Set the container scroll position based on the current time.
@@ -38,13 +43,13 @@ export default function DayViewCalendar() {
         <div>
           <h1 className='text-base font-semibold leading-6 text-gray-900'>
             <time dateTime='2022-01-22' className='sm:hidden'>
-              Jan 22, 2022
+              {format(today, 'MMMM dd, yyy')}
             </time>
             <time dateTime='2022-01-22' className='hidden sm:inline'>
-              January 22, 2022
+              {format(today, 'MMM dd, yyy')}
             </time>
           </h1>
-          <p className='mt-1 text-sm text-gray-500'>Saturday</p>
+          <p className='mt-1 text-sm text-gray-500'>{format(today, 'EEEE')}</p>
         </div>
         <div className='flex items-center'>
           <div className='relative flex items-center rounded-md bg-white shadow-sm md:items-stretch'>
@@ -89,12 +94,6 @@ export default function DayViewCalendar() {
                 </div>
               </TransitionComponent>
             </Menu>
-            <div className='ml-6 h-6 w-px bg-gray-300' />
-            <button
-              type='button'
-              className='ml-6 rounded-md  bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
-              Add event
-            </button>
           </div>
           <Menu as='div' className='relative ml-6 md:hidden'>
             <Menu.Button className='-mx-2 flex items-center rounded-full border border-transparent p-2 text-gray-400 hover:text-gray-500'>
