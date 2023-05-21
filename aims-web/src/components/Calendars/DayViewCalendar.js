@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -16,15 +16,49 @@ import TransitionComponent from '../../UI/TransitionComponent';
 import ScheduleItems from '../Events/ScheduleItems';
 import WholeMonthCalendar from './WholeMonthCalendar';
 
-import { startOfToday, format } from 'date-fns';
+import {
+  startOfToday,
+  endOfToday,
+  format,
+  startOfMonth,
+  endOfMonth,
+  startOfWeek,
+  eachDayOfInterval,
+} from 'date-fns';
 
 export default function DayViewCalendar() {
   const container = useRef(null);
   const containerNav = useRef(null);
   const containerOffset = useRef(null);
 
+  // Set dynamic selected day
   const today = startOfToday();
-  console.log(today);
+  const [selectedDay, setSelectedDay] = useState(today);
+
+  // Set dynamic selected month
+  const firstDayofTheCurrentMonth = startOfMonth(today);
+  const firstDayofTheSelectedMonth = startOfMonth(selectedDay);
+  const [selectedMonth, setSelectedMonth] = useState(
+    firstDayofTheSelectedMonth
+  );
+
+  // Set dynamic the week of selected day
+  const startDayOfCurrentWeek = startOfWeek(today);
+  const [selectedWeek, setSelectedWeek] = useState(startDayOfCurrentWeek);
+
+  // Day range of the selected month
+  const daysOfCurrentMonth = eachDayOfInterval({
+    start: firstDayofTheCurrentMonth,
+    end: endOfMonth(firstDayofTheCurrentMonth),
+  });
+  const [daysOfSelectedMonth, setDaysOfSelectedMonth] =
+    useState(daysOfCurrentMonth);
+
+  // Set hour range of a day
+  const hoursRange = eachDayOfInterval({
+    start: startOfToday(),
+    end: endOfToday(),
+  });
 
   useEffect(() => {
     // Set the container scroll position based on the current time.
@@ -139,11 +173,8 @@ export default function DayViewCalendar() {
                 className='col-start-1 col-end-2 row-start-1 grid divide-y divide-gray-100'
                 style={{ gridTemplateRows: 'repeat(48, minmax(3.5rem, 1fr))' }}>
                 <div ref={containerOffset} className='row-end-1 h-7'></div>
-                {time.map((t, i) => {
-                  return <TimeView key={i} time={`${t}AM`} />;
-                })}
-                {time.map((t, i) => {
-                  return <TimeView key={i} time={`${t}PM`} />;
+                {hoursRange.map((hour, i) => {
+                  return <TimeView key={i} time={`${format(hour, 'h aa')}`} />;
                 })}
               </div>
 
