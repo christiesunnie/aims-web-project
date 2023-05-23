@@ -7,11 +7,11 @@ import {
 } from '@heroicons/react/20/solid';
 import { Menu } from '@headlessui/react';
 
-import { days, time, schedule } from '../../data/data';
-import MonthButton from '../Buttons/MonthButton';
+import { schedule } from '../../data/data';
+import ChosenTypeButton from '../Buttons/ChosenTypeButton';
 import MenuItem from '../Menu/MenuItem';
 import TimeView from './TimeView';
-import DateButton from '../Buttons/DateButton';
+import WeeklyDateButton from '../Buttons/WeeklyDateButton';
 import TransitionComponent from '../../UI/TransitionComponent';
 import ScheduleItems from '../Events/ScheduleItems';
 import WholeMonthCalendar from './WholeMonthCalendar';
@@ -24,6 +24,8 @@ import {
   endOfMonth,
   startOfWeek,
   eachDayOfInterval,
+  eachHourOfInterval,
+  endOfWeek,
 } from 'date-fns';
 
 export default function DayViewCalendar() {
@@ -45,20 +47,34 @@ export default function DayViewCalendar() {
   // Set dynamic the week of selected day
   const startDayOfCurrentWeek = startOfWeek(today);
   const [selectedWeek, setSelectedWeek] = useState(startDayOfCurrentWeek);
-
-  // Day range of the selected month
-  const daysOfCurrentMonth = eachDayOfInterval({
-    start: firstDayofTheCurrentMonth,
-    end: endOfMonth(firstDayofTheCurrentMonth),
+  const daysOfWeek = eachDayOfInterval({
+    start: selectedWeek,
+    end: endOfWeek(selectedWeek),
   });
+
+  // Day range of the current month
+  const daysOfCurrentMonth = eachDayOfInterval({
+    start: startOfWeek(firstDayofTheCurrentMonth),
+    end: endOfWeek(endOfMonth(firstDayofTheCurrentMonth)),
+  });
+
   const [daysOfSelectedMonth, setDaysOfSelectedMonth] =
     useState(daysOfCurrentMonth);
 
   // Set hour range of a day
-  const hoursRange = eachDayOfInterval({
+  const hoursRange = eachHourOfInterval({
     start: startOfToday(),
     end: endOfToday(),
   });
+
+  useEffect(() => {
+    // Day range of the selected month
+    const daysOfMonth = eachDayOfInterval({
+      start: startOfWeek(selectedMonth),
+      end: endOfWeek(endOfMonth(selectedMonth)),
+    });
+    setDaysOfSelectedMonth(daysOfMonth);
+  }, [selectedMonth]);
 
   useEffect(() => {
     // Set the container scroll position based on the current time.
@@ -77,13 +93,15 @@ export default function DayViewCalendar() {
         <div>
           <h1 className='text-base font-semibold leading-6 text-gray-900'>
             <time dateTime='2022-01-22' className='sm:hidden'>
-              {format(today, 'MMMM dd, yyy')}
+              {format(selectedDay, 'MMMM dd, yyyy')}
             </time>
             <time dateTime='2022-01-22' className='hidden sm:inline'>
-              {format(today, 'MMM dd, yyy')}
+              {format(selectedDay, 'MMM dd, yyyy')}
             </time>
           </h1>
-          <p className='mt-1 text-sm text-gray-500'>{format(today, 'EEEE')}</p>
+          <p className='mt-1 text-sm text-gray-500'>
+            {format(selectedDay, 'EEEE')}
+          </p>
         </div>
         <div className='flex items-center'>
           <div className='relative flex items-center rounded-md bg-white shadow-sm md:items-stretch'>
@@ -91,23 +109,24 @@ export default function DayViewCalendar() {
               className='pointer-events-none absolute inset-0 rounded-md ring-1 ring-inset ring-gray-300'
               aria-hidden='true'
             />
-            <MonthButton
-              month='Previous day'
+            <ChosenTypeButton
+              label='Previous day'
               buttonStyles='rounded-l-md py-2 pl-3 pr-4 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50'>
               <ChevronLeftIcon className='h-5 w-5' aria-hidden='true' />
-            </MonthButton>
+            </ChosenTypeButton>
             <button
               type='button'
               className='hidden px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:relative md:block'>
               Today
             </button>
             <span className='relative -mx-px h-5 w-px bg-gray-300 md:hidden' />
-            <MonthButton
-              month='Next day'
+            <ChosenTypeButton
+              label='Next day'
               buttonStyles='rounded-l-md py-2 pl-3 pr-4 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50'>
               <ChevronRightIcon className='h-5 w-5' aria-hidden='true' />
-            </MonthButton>
+            </ChosenTypeButton>
           </div>
+          {/* Tablet + Desktop view */}
           <div className='hidden md:ml-4 md:flex md:items-center'>
             <Menu as='div' className='relative'>
               <Menu.Button
@@ -129,6 +148,7 @@ export default function DayViewCalendar() {
               </TransitionComponent>
             </Menu>
           </div>
+          {/* Mobile view */}
           <Menu as='div' className='relative ml-6 md:hidden'>
             <Menu.Button className='-mx-2 flex items-center rounded-full border border-transparent p-2 text-gray-400 hover:text-gray-500'>
               <span className='sr-only'>Open menu</span>
@@ -136,9 +156,6 @@ export default function DayViewCalendar() {
             </Menu.Button>
 
             <TransitionComponent menuItemsStyles='divide-y divide-gray-100'>
-              <div className='py-1'>
-                <MenuItem textContent='Create event' />
-              </div>
               <div className='py-1'>
                 <MenuItem textContent='Go to today' />
               </div>
@@ -154,16 +171,14 @@ export default function DayViewCalendar() {
       </header>
       <div className='isolate flex flex-auto overflow-hidden bg-white'>
         <div ref={container} className='flex flex-auto flex-col overflow-auto'>
+          {/* Mobile calendar view */}
           <div
             ref={containerNav}
             className='sticky top-0 z-10 grid flex-none grid-cols-7 bg-white text-xs text-gray-500 shadow ring-1 ring-black ring-opacity-5 md:hidden'>
-            <DateButton day='W' date='19' />
-            <DateButton day='T' date='20' />
-            <DateButton day='F' date='21' />
-            <DateButton day='S' date='22' />
-            <DateButton day='S' date='23' />
-            <DateButton day='M' date='24' />
-            <DateButton day='T' date='25' />
+            <WeeklyDateButton
+              daysOfWeek={daysOfWeek}
+              selectedDay={selectedDay}
+            />
           </div>
           <div className='flex w-full flex-auto'>
             <div className='w-14 flex-none bg-white ring-1 ring-gray-100' />
@@ -183,30 +198,36 @@ export default function DayViewCalendar() {
             </div>
           </div>
         </div>
+        {/* Tablet + Desktop calendar view */}
         <div className='hidden w-1/2 max-w-md flex-none border-l border-gray-100 px-8 py-10 md:block'>
           <div className='flex items-center text-center text-gray-900'>
-            <MonthButton
-              month='Previous month'
+            <ChosenTypeButton
+              label='Previous month'
               buttonStyles='-m-1.5 flex-none p-1.5'>
               <ChevronLeftIcon className='h-5 w-5' aria-hidden='true' />
-            </MonthButton>
-            <div className='flex-auto text-sm font-semibold'>January 2022</div>
-            <MonthButton
-              month='Next month'
+            </ChosenTypeButton>
+            <div className='flex-auto text-sm font-semibold'>
+              {format(selectedDay, 'MMMM yyyy')}
+            </div>
+            <ChosenTypeButton
+              label='Next month'
               buttonStyles='-m-1.5 flex-none p-1.5'>
               <ChevronRightIcon className='h-5 w-5' aria-hidden='true' />
-            </MonthButton>
+            </ChosenTypeButton>
           </div>
           <div className='mt-6 grid grid-cols-7 text-center text-xs leading-6 text-gray-500'>
+            <div>S</div>
             <div>M</div>
             <div>T</div>
             <div>W</div>
             <div>T</div>
             <div>F</div>
             <div>S</div>
-            <div>S</div>
           </div>
-          <WholeMonthCalendar days={days} />
+          <WholeMonthCalendar
+            days={daysOfSelectedMonth}
+            selectedDay={selectedDay}
+          />
         </div>
       </div>
     </div>
