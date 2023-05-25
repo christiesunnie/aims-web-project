@@ -67,6 +67,10 @@ export default function DayViewCalendar() {
     end: endOfToday(),
   });
 
+  const handleSelectedDayClick = (day) => {
+    setSelectedDay(day);
+  };
+
   useEffect(() => {
     // Day range of the selected month
     const daysOfMonth = eachDayOfInterval({
@@ -227,6 +231,7 @@ export default function DayViewCalendar() {
           <WholeMonthCalendar
             days={daysOfSelectedMonth}
             selectedDay={selectedDay}
+            onClick={handleSelectedDayClick}
           />
         </div>
       </div>

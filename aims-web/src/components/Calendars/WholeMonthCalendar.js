@@ -2,13 +2,14 @@ import React from 'react';
 import cn from 'classnames';
 import { format, isEqual, isSameMonth, isToday } from 'date-fns';
 
-const WholeMonthCalendar = ({ days, selectedDay }) => {
+const WholeMonthCalendar = ({ days, selectedDay, onClick }) => {
   return (
     <div className='isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-1 ring-gray-200'>
       {days.map((day, dayIdx) => {
         const formattedDay = format(day, 'yyyy-MM-dd');
         return (
           <button
+            onClick={() => onClick(day)}
             key={dayIdx}
             type='button'
             className={cn(
