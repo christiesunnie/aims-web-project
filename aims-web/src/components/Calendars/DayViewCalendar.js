@@ -26,6 +26,7 @@ import {
   eachDayOfInterval,
   eachHourOfInterval,
   endOfWeek,
+  add,
 } from 'date-fns';
 
 export default function DayViewCalendar() {
@@ -69,6 +70,14 @@ export default function DayViewCalendar() {
 
   const handleSelectedDayClick = (day) => {
     setSelectedDay(day);
+  };
+
+  const handleMonthClick = (monthType) => {
+    setSelectedMonth(
+      add(selectedMonth, {
+        months: monthType === 'Previous month' ? -1 : 1,
+      })
+    );
   };
 
   useEffect(() => {
@@ -207,15 +216,17 @@ export default function DayViewCalendar() {
           <div className='flex items-center text-center text-gray-900'>
             <ChosenTypeButton
               label='Previous month'
-              buttonStyles='-m-1.5 flex-none p-1.5'>
+              buttonStyles='-m-1.5 flex-none p-1.5'
+              onClick={handleMonthClick}>
               <ChevronLeftIcon className='h-5 w-5' aria-hidden='true' />
             </ChosenTypeButton>
             <div className='flex-auto text-sm font-semibold'>
-              {format(selectedDay, 'MMMM yyyy')}
+              {format(selectedMonth, 'MMMM yyyy')}
             </div>
             <ChosenTypeButton
               label='Next month'
-              buttonStyles='-m-1.5 flex-none p-1.5'>
+              buttonStyles='-m-1.5 flex-none p-1.5'
+              onClick={handleMonthClick}>
               <ChevronRightIcon className='h-5 w-5' aria-hidden='true' />
             </ChosenTypeButton>
           </div>
@@ -231,6 +242,7 @@ export default function DayViewCalendar() {
           <WholeMonthCalendar
             days={daysOfSelectedMonth}
             selectedDay={selectedDay}
+            selectedMonth={selectedMonth}
             onClick={handleSelectedDayClick}
           />
         </div>
