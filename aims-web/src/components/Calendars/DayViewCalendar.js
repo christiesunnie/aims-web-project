@@ -68,6 +68,12 @@ export default function DayViewCalendar() {
     end: endOfToday(),
   });
 
+  const handleTodayClick = () => {
+    setSelectedDay(today);
+    setSelectedWeek(startOfWeek(today));
+    setSelectedMonth(startOfMonth(today));
+  };
+
   const handleSelectedDayClick = (day) => {
     setSelectedDay(day);
   };
@@ -128,6 +134,7 @@ export default function DayViewCalendar() {
               <ChevronLeftIcon className='h-5 w-5' aria-hidden='true' />
             </ChosenTypeButton>
             <button
+              onClick={handleTodayClick}
               type='button'
               className='hidden px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:relative md:block'>
               Today
@@ -170,7 +177,10 @@ export default function DayViewCalendar() {
 
             <TransitionComponent menuItemsStyles='divide-y divide-gray-100'>
               <div className='py-1'>
-                <MenuItem textContent='Go to today' />
+                <MenuItem
+                  textContent='Go to today'
+                  onClick={handleTodayClick}
+                />
               </div>
               <div className='py-1'>
                 <MenuItem textContent='Day view' />

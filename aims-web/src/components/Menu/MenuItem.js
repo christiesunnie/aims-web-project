@@ -2,11 +2,12 @@ import React from 'react';
 import cn from 'classnames';
 import { Menu } from '@headlessui/react';
 
-const MenuItem = ({ textContent }) => {
+const MenuItem = ({ textContent, onClick }) => {
   return (
     <Menu.Item>
       {({ active }) => (
         <a
+          onClick={onClick}
           href='#'
           className={cn(
             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
