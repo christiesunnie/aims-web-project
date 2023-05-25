@@ -27,6 +27,7 @@ import {
   eachHourOfInterval,
   endOfWeek,
   add,
+  isSameMonth,
 } from 'date-fns';
 
 export default function DayViewCalendar() {
@@ -45,12 +46,10 @@ export default function DayViewCalendar() {
     firstDayofTheSelectedMonth
   );
 
-  // Set dynamic the week of selected day
-  const startDayOfCurrentWeek = startOfWeek(today);
-  const [selectedWeek, setSelectedWeek] = useState(startDayOfCurrentWeek);
+  // Set range of the selected week
   const daysOfWeek = eachDayOfInterval({
-    start: selectedWeek,
-    end: endOfWeek(selectedWeek),
+    start: startOfWeek(selectedDay),
+    end: endOfWeek(selectedDay),
   });
 
   // Day range of the current month
@@ -70,12 +69,16 @@ export default function DayViewCalendar() {
 
   const handleTodayClick = () => {
     setSelectedDay(today);
-    setSelectedWeek(startOfWeek(today));
     setSelectedMonth(startOfMonth(today));
   };
 
-  const handleSelectedDayClick = (day) => {
-    setSelectedDay(day);
+  const handleSelectedDayArrowsClick = (dayType) => {
+    const newSelectedDay = add(selectedDay, {
+      days: dayType === 'Previous day' ? -1 : 1,
+    });
+    setSelectedDay(newSelectedDay);
+    !isSameMonth(newSelectedDay, selectedMonth) &&
+      setSelectedMonth(startOfMonth(newSelectedDay));
   };
 
   const handleMonthClick = (monthType) => {
@@ -129,6 +132,7 @@ export default function DayViewCalendar() {
               aria-hidden='true'
             />
             <ChosenTypeButton
+              onClick={handleSelectedDayArrowsClick}
               label='Previous day'
               buttonStyles='rounded-l-md py-2 pl-3 pr-4 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50'>
               <ChevronLeftIcon className='h-5 w-5' aria-hidden='true' />
@@ -141,6 +145,7 @@ export default function DayViewCalendar() {
             </button>
             <span className='relative -mx-px h-5 w-px bg-gray-300 md:hidden' />
             <ChosenTypeButton
+              onClick={handleSelectedDayArrowsClick}
               label='Next day'
               buttonStyles='rounded-l-md py-2 pl-3 pr-4 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50'>
               <ChevronRightIcon className='h-5 w-5' aria-hidden='true' />
@@ -199,6 +204,7 @@ export default function DayViewCalendar() {
             ref={containerNav}
             className='sticky top-0 z-10 grid flex-none grid-cols-7 bg-white text-xs text-gray-500 shadow ring-1 ring-black ring-opacity-5 md:hidden'>
             <WeeklyDateButton
+              onClick={(day) => setSelectedDay(day)}
               daysOfWeek={daysOfWeek}
               selectedDay={selectedDay}
             />
@@ -253,7 +259,7 @@ export default function DayViewCalendar() {
             days={daysOfSelectedMonth}
             selectedDay={selectedDay}
             selectedMonth={selectedMonth}
-            onClick={handleSelectedDayClick}
+            onClick={(day) => setSelectedDay(day)}
           />
         </div>
       </div>

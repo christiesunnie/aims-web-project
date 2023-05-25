@@ -2,13 +2,14 @@ import React from 'react';
 import cn from 'classnames';
 import { isEqual, isToday, format } from 'date-fns';
 
-const WeeklyDateButton = ({ daysOfWeek, selectedDay }) => {
+const WeeklyDateButton = ({ daysOfWeek, selectedDay, onClick }) => {
   const renderredDaysOfWeek = daysOfWeek.map((day, i) => {
     const formattedDay = format(day, 'eeeee');
     const formattedDate = format(day, 'd');
 
     return (
       <button
+        onClick={() => onClick(day)}
         key={i}
         type='button'
         className='flex flex-col items-center pb-1.5 pt-3'>
