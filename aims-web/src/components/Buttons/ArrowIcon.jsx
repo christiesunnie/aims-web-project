@@ -1,3 +1,4 @@
+import React from 'react';
 import classNames from 'classnames';
 import {
   ChevronLeftIcon,
@@ -8,8 +9,8 @@ import {
 
 const ArrowIcon = ({ iconLabel = '', iconType, iconClasses = '' }) => {
   return (
-    <div className={classNames('h-5 w-5', iconClasses)} aria-hidden='true'>
-      <span className='sr-only'>{iconLabel}</span>
+    <div className={classNames('h-5 w-5', iconClasses)} aria-hidden="true">
+      <span className="sr-only">{iconLabel}</span>
       {iconType && iconType === 'left' && <ChevronLeftIcon />}
       {iconType && iconType === 'right' && <ChevronRightIcon />}
       {iconType && iconType === 'down' && <ChevronDownIcon />}
