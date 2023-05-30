@@ -13,6 +13,7 @@ import {
 import DateDetailHeader from '../Header/DateDetailHeader';
 import MenuHeaderNav from '../Header/MenuHeaderNav';
 import MonthsCalendar from './MonthsCalendar';
+// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import HoursCalendar from './HoursCalendar';
 import WeeksCalendar from './WeeksCalendar';
 
