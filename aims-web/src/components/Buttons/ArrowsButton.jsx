@@ -11,9 +11,10 @@ const ArrowsButton = ({
   const arrowsIconType = iconType === 'left' ? 'left' : 'right';
   return (
     <button
-      type='button'
+      type="button"
       className={arrowsButtonClasses}
-      onClick={handleArrowsButtonClick}>
+      onClick={handleArrowsButtonClick}
+    >
       <ArrowIcon iconLabel={arrowsIconLabel} iconType={arrowsIconType} />
     </button>
   );

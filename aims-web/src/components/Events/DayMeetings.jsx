@@ -1,5 +1,5 @@
 import { isSameDay, parseISO, intervalToDuration } from 'date-fns';
-import { events } from '../../data/data';
+import events from '../../data/data';
 
 const DayMeetings = ({ selectedDay }) => {
   const selectedDayMeetings = events.filter((meeting) => {
@@ -22,7 +22,7 @@ const DayMeetings = ({ selectedDay }) => {
 
   const renderedSelectedDayMeetings = selectedDayMeetings.map((meeting) => (
     <li
-      className='relative mt-px flex'
+      className="relative mt-px flex"
       style={{
         gridRow: `${
           (parseISO(meeting.startDatetime).getMinutes() / 60 +
@@ -30,20 +30,23 @@ const DayMeetings = ({ selectedDay }) => {
             12 +
           2
         } / span ${getMeetingDuration(meeting) * 12}`,
-      }}>
+      }}
+    >
       <a
-        href='#'
-        className='group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 p-2 text-xs leading-5 hover:bg-blue-100'>
-        <p className='order-1 font-semibold text-blue-700'>
+        href="#"
+        className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 p-2 text-xs leading-5 hover:bg-blue-100"
+      >
+        <p className="order-1 font-semibold text-blue-700">
           {meeting.description}
         </p>
-        <p className='text-blue-500 group-hover:text-blue-700'>
+        <p className="text-blue-500 group-hover:text-blue-700">
           <time dateTime={meeting.startDatetime}>{meeting.start}</time>
         </p>
       </a>
     </li>
   ));
 
+  // eslint-disable-next-line consistent-return, react/jsx-no-useless-fragment
   return <>{renderedSelectedDayMeetings}</>;
 };
 

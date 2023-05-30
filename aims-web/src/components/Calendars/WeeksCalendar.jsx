@@ -23,19 +23,23 @@ const WeeksCalendar = ({
   return (
     <div
       ref={containerNav}
-      className='sticky top-0 z-10 grid flex-none grid-cols-7 bg-white text-xs text-gray-500 shadow ring-1 ring-black ring-opacity-5 md:hidden'>
+      className="sticky top-0 z-10 grid flex-none grid-cols-7 bg-white text-xs text-gray-500 shadow ring-1 ring-black ring-opacity-5 md:hidden"
+    >
       {daysOfWeek.map((day) => (
         <div
           key={Math.random()}
-          className='flex items-center justify-center py-3'>
+          className="flex items-center justify-center py-3"
+        >
           <span
             className={classNames({
               'flex items-baseline': isEqual(day, startOfToday()),
-            })}>
+            })}
+          >
             <button
-              type='button'
-              className='flex flex-col items-center pb-1.5 pt-3'
-              onClick={() => handleSelectedDayClick(day)}>
+              type="button"
+              className="flex flex-col items-center pb-1.5 pt-3"
+              onClick={() => handleSelectedDayClick(day)}
+            >
               <span>{format(day, 'eee')}</span>
 
               <span
@@ -57,7 +61,8 @@ const WeeksCalendar = ({
                     'text-indigo-600':
                       !isEqual(day, selectedDay) && isToday(day),
                   }
-                )}>
+                )}
+              >
                 {format(day, 'd')}
               </span>
             </button>
