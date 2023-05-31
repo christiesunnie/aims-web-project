@@ -1,3 +1,4 @@
+import React from 'react';
 import { format } from 'date-fns';
 import ArrowsButton from '../Buttons/ArrowsButton';
 import DaysOfMonthCalendar from './DaysOfMonthCalendar';

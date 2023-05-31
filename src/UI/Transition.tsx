@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Transition } from '@headlessui/react';
 
 const TransitionUI = ({ children }) => (

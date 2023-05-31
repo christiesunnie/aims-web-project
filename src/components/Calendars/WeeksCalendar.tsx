@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import classNames from 'classnames';
-
+import React from 'react';
 import {
   format,
   startOfToday,
