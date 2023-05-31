@@ -1,3 +1,4 @@
+import React from 'react';
 import { isSameDay, parseISO, intervalToDuration } from 'date-fns';
 import events from '../../data/data';
 

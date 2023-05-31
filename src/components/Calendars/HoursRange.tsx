@@ -1,3 +1,4 @@
+import React from 'react';
 import { format, eachHourOfInterval, startOfToday, endOfToday } from 'date-fns';
 
 const HoursRange = ({ containerOffset }) => {

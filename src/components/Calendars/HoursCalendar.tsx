@@ -1,3 +1,4 @@
+import React from 'react';
 import HoursRange from './HoursRange';
 import DayMeetings from '../Events/DayMeetings';
 
