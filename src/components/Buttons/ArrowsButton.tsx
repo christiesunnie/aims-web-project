@@ -1,6 +1,13 @@
 import React from 'react';
 import ArrowIcon from './ArrowIcon';
 
+type ArrowsButton = {
+  arrowsButtonClasses?: string;
+  handleArrowsButtonClick: () => string;
+  iconLabel: string;
+  iconType: string;
+};
+
 const ArrowsButton = ({
   arrowsButtonClasses,
   handleArrowsButtonClick,

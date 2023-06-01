@@ -2,7 +2,31 @@ import React from 'react';
 import { isSameDay, parseISO, intervalToDuration } from 'date-fns';
 import events from '../../data/data';
 
-const DayMeetings = ({ selectedDay }) => {
+type DayMeetingsProps = {
+  selectedDay: number | Date;
+};
+
+interface MeetingProps {
+  id: number;
+  name: string;
+  imageUrl: string;
+  start: string;
+  startDatetime: string;
+  end: string;
+  endDatetime: string;
+  description: string;
+}
+
+interface DurationProps {
+  days: number;
+  hours: number;
+  minutes: number;
+  months: number;
+  seconds: number;
+  years: number;
+}
+
+const DayMeetings = ({ selectedDay }: DayMeetingsProps) => {
   const selectedDayMeetings = events.filter((meeting) => {
     const isTheSameDay = isSameDay(
       parseISO(meeting.startDatetime),
@@ -11,12 +35,13 @@ const DayMeetings = ({ selectedDay }) => {
     return isTheSameDay;
   });
 
-  const getMeetingDuration = (meeting) => {
+  const getMeetingDuration = (meeting: MeetingProps): number => {
     const meetingDuration = intervalToDuration({
       start: parseISO(meeting.startDatetime),
       end: parseISO(meeting.endDatetime),
-    });
-    return meetingDuration.minutes / 60 + meetingDuration.hours;
+    }) as DurationProps;
+    const { minutes, hours } = meetingDuration;
+    return minutes / 60 + hours;
   };
 
   if (selectedDayMeetings.length < 0) return;
