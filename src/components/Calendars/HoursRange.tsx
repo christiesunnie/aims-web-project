@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { format, eachHourOfInterval, startOfToday, endOfToday } from 'date-fns';
 
-const HoursRange = ({ containerOffset }) => {
+type HoursRangeProps = {
+  containerOffset: React.MutableRefObject<HTMLHeadingElement>;
+};
+
+const HoursRange = ({ containerOffset }: HoursRangeProps) => {
   const hoursRange = eachHourOfInterval({
     start: startOfToday(),
     end: endOfToday(),
@@ -14,14 +18,14 @@ const HoursRange = ({ containerOffset }) => {
     >
       <div ref={containerOffset} className="row-end-1 h-7" />
       {hoursRange.map((hour) => (
-        <>
-          <div key={Math.random()}>
+        <Fragment key={Math.random()}>
+          <div>
             <div className="sticky left-0 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">
               {format(hour, 'h aa')}
             </div>
           </div>
           <div />
-        </>
+        </Fragment>
       ))}
       <div />
     </div>

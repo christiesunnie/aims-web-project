@@ -2,7 +2,15 @@ import React from 'react';
 import HoursRange from './HoursRange';
 import DayMeetings from '../Events/DayMeetings';
 
-const HoursCalendar = ({ containerOffset, selectedDay }) => (
+type HoursCalendarProps = {
+  containerOffset: React.MutableRefObject<HTMLHeadingElement>;
+  selectedDay: Date;
+};
+
+const HoursCalendar = ({
+  containerOffset,
+  selectedDay,
+}: HoursCalendarProps) => (
   <div className="flex w-full flex-auto">
     <div className="w-14 flex-none bg-white ring-1 ring-gray-100" />
     <div className="grid flex-auto grid-cols-1 grid-rows-1">

@@ -3,12 +3,20 @@ import classNames from 'classnames';
 import React from 'react';
 import { format, isEqual, isSameMonth, isToday } from 'date-fns';
 
+type DaysOfMonthCalendarProps = {
+  daysOfMonth: Date[];
+  selectedDay: Date;
+  selectedMonth: Date;
+  // eslint-disable-next-line no-unused-vars
+  handleSelectedDayClick: (day: Date) => void;
+};
+
 const DaysOfMonthCalendar = ({
   daysOfMonth,
   selectedDay,
   selectedMonth,
   handleSelectedDayClick,
-}) => (
+}: DaysOfMonthCalendarProps) => (
   <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-1 ring-gray-200">
     {daysOfMonth.map((day, dayIdx) => (
       <button

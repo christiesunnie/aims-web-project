@@ -3,13 +3,23 @@ import { format } from 'date-fns';
 import ArrowsButton from '../Buttons/ArrowsButton';
 import DaysOfMonthCalendar from './DaysOfMonthCalendar';
 
+type MonthsCalendarProps = {
+  // eslint-disable-next-line no-unused-vars
+  handleMonthClick: (monthType: string) => void;
+  daysOfMonth: Date[];
+  selectedDay: Date;
+  selectedMonth: Date;
+  // eslint-disable-next-line no-unused-vars
+  handleSelectedDayClick: (day: Date) => void;
+};
+
 const MonthsCalendar = ({
   handleMonthClick,
   daysOfMonth,
   selectedDay,
   selectedMonth,
   handleSelectedDayClick,
-}) => (
+}: MonthsCalendarProps) => (
   <div className="hidden w-1/2 max-w-md flex-none border-l border-gray-100 px-8 py-10 md:block">
     <div className="flex items-center text-center text-gray-900">
       <ArrowsButton

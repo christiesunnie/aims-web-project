@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect, useRef, useState } from 'react';
 
 import {
@@ -18,9 +19,9 @@ import HoursCalendar from './HoursCalendar';
 import WeeksCalendar from './WeeksCalendar';
 
 export default function DayViewCalendar() {
-  const container = useRef(null);
-  const containerNav = useRef(null);
-  const containerOffset = useRef(null);
+  const container = useRef<HTMLHeadingElement>(null!);
+  const containerNav = useRef<HTMLHeadingElement>(null!);
+  const containerOffset = useRef<HTMLHeadingElement>(null!);
 
   // Set dynamic selected day
   const today = startOfToday();
@@ -46,7 +47,7 @@ export default function DayViewCalendar() {
     setSelectedMonth(startOfMonth(today));
   };
 
-  const handleSelectedDayClick = (dayType) => {
+  const handleSelectedDayClick = (dayType: string) => {
     const newSelectedDay = add(selectedDay, {
       days: dayType === 'previous' ? -1 : 1,
     });
@@ -56,7 +57,7 @@ export default function DayViewCalendar() {
     }
   };
 
-  const handleMonthClick = (monthType) => {
+  const handleMonthClick = (monthType: string) => {
     setSelectedMonth(
       add(selectedMonth, {
         months: monthType === 'previous' ? -1 : 1,
@@ -98,7 +99,7 @@ export default function DayViewCalendar() {
           <WeeksCalendar
             containerNav={containerNav}
             selectedDay={selectedDay}
-            handleSelectedDayClick={(day) => setSelectedDay(day)}
+            handleSelectedDayClick={(day: Date) => setSelectedDay(day)}
           />
           <HoursCalendar
             containerOffset={containerOffset}
@@ -110,7 +111,7 @@ export default function DayViewCalendar() {
           daysOfMonth={daysOfMonth}
           selectedDay={selectedDay}
           selectedMonth={selectedMonth}
-          handleSelectedDayClick={(day) => setSelectedDay(day)}
+          handleSelectedDayClick={(day: Date) => setSelectedDay(day)}
           handleMonthClick={handleMonthClick}
         />
       </div>

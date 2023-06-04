@@ -1,7 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, ReactNode } from 'react';
 import { Transition } from '@headlessui/react';
 
-const TransitionUI = ({ children }) => (
+interface Props {
+  children?: ReactNode;
+}
+
+const TransitionUI = ({ children }: Props) => (
   <Transition
     as={Fragment}
     enter="transition ease-out duration-100"

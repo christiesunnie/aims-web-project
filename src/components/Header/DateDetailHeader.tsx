@@ -1,7 +1,11 @@
 import React from 'react';
 import { format } from 'date-fns';
 
-const DateDetailHeader = ({ selectedDay }) => (
+type DateDetailHeaderProps = {
+  selectedDay: Date;
+};
+
+const DateDetailHeader = ({ selectedDay }: DateDetailHeaderProps) => (
   <div>
     <h1 className="text-base font-semibold leading-6 text-gray-900">
       <time dateTime="2022-01-22" className="sm:hidden">

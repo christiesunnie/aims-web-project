@@ -1,9 +1,9 @@
 import React from 'react';
 import ArrowIcon from './ArrowIcon';
 
-type ArrowsButton = {
+type ArrowsButtonProps = {
   arrowsButtonClasses?: string;
-  handleArrowsButtonClick: () => string;
+  handleArrowsButtonClick: () => void;
   iconLabel: string;
   iconType: string;
 };
@@ -13,7 +13,7 @@ const ArrowsButton = ({
   handleArrowsButtonClick,
   iconLabel,
   iconType,
-}) => {
+}: ArrowsButtonProps) => {
   const arrowsIconLabel =
     iconLabel === 'previous' ? 'Previous arrow' : 'Next arrow';
   const arrowsIconType = iconType === 'left' ? 'left' : 'right';

@@ -3,7 +3,12 @@ import classNames from 'classnames';
 import React from 'react';
 import { Menu } from '@headlessui/react';
 
-const MenuItem = ({ itemText, handleMenuItemClick }) => (
+type MenuItemProps = {
+  itemText: string;
+  handleMenuItemClick?: () => void;
+};
+
+const MenuItem = ({ itemText, handleMenuItemClick }: MenuItemProps) => (
   <div className="py-1">
     <Menu.Item>
       {({ active }) => (

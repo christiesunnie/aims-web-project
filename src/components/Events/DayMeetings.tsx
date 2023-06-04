@@ -27,7 +27,7 @@ interface DurationProps {
 }
 
 const DayMeetings = ({ selectedDay }: DayMeetingsProps) => {
-  const selectedDayMeetings = events.filter((meeting) => {
+  const selectedDayMeetings = events.filter((meeting: MeetingProps) => {
     const isTheSameDay = isSameDay(
       parseISO(meeting.startDatetime),
       selectedDay
@@ -43,8 +43,6 @@ const DayMeetings = ({ selectedDay }: DayMeetingsProps) => {
     const { minutes, hours } = meetingDuration;
     return minutes / 60 + hours;
   };
-
-  if (selectedDayMeetings.length < 0) return;
 
   const renderedSelectedDayMeetings = selectedDayMeetings.map((meeting) => (
     <li
@@ -73,7 +71,7 @@ const DayMeetings = ({ selectedDay }: DayMeetingsProps) => {
   ));
 
   // eslint-disable-next-line consistent-return, react/jsx-no-useless-fragment
-  return <>{renderedSelectedDayMeetings}</>;
+  return <>{selectedDayMeetings.length > 0 && renderedSelectedDayMeetings}</>;
 };
 
 export default DayMeetings;

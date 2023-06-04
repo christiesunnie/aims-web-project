@@ -5,7 +5,16 @@ import ArrowsButton from '../Buttons/ArrowsButton';
 import TransitionUI from '../../UI/Transition';
 import MenuItem from '../Menu/MenuItem';
 
-const MenuHeaderNav = ({ handleSelectedDayClick, handleTodayClick }) => (
+type MenuHeaderNavProps = {
+  // eslint-disable-next-line no-unused-vars
+  handleSelectedDayClick: (dayType: string) => void;
+  handleTodayClick: () => void;
+};
+
+const MenuHeaderNav = ({
+  handleSelectedDayClick,
+  handleTodayClick,
+}: MenuHeaderNavProps) => (
   <div className="flex items-center">
     <div className="relative flex items-center rounded-md bg-white shadow-sm md:items-stretch">
       <div
@@ -45,7 +54,7 @@ const MenuHeaderNav = ({ handleSelectedDayClick, handleTodayClick }) => (
 
         <TransitionUI>
           <Menu.Items className="absolute right-0 z-10 mt-3 w-36 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <MenuItem itemText="Day view" handleMenuItemClick={null} />
+            <MenuItem itemText="Day view" />
           </Menu.Items>
         </TransitionUI>
       </Menu>

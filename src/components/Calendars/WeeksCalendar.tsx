@@ -11,11 +11,18 @@ import {
   endOfWeek,
 } from 'date-fns';
 
+type WeeksCalendarProps = {
+  containerNav: React.MutableRefObject<HTMLHeadingElement>;
+  selectedDay: Date;
+  // eslint-disable-next-line no-unused-vars
+  handleSelectedDayClick: (day: Date) => void;
+};
+
 const WeeksCalendar = ({
   containerNav,
   selectedDay,
   handleSelectedDayClick,
-}) => {
+}: WeeksCalendarProps) => {
   const daysOfWeek = eachDayOfInterval({
     start: startOfWeek(selectedDay),
     end: endOfWeek(selectedDay),
