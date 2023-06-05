@@ -8,13 +8,13 @@ import {
   EllipsisHorizontalIcon,
 } from '@heroicons/react/20/solid';
 
-type ArrowIcon = {
+type ArrowIconProps = {
   iconLabel?: string;
   iconType: string;
   iconClasses?: string;
 };
 
-const ArrowIcon = ({ iconLabel, iconType, iconClasses }: ArrowIcon) => (
+const ArrowIcon = ({ iconLabel, iconType, iconClasses }: ArrowIconProps) => (
   <div className={classNames('h-5 w-5', iconClasses)} aria-hidden="true">
     <span className="sr-only">{iconLabel}</span>
     {iconType && iconType === 'left' && <ChevronLeftIcon />}

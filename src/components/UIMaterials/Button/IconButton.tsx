@@ -1,31 +1,31 @@
 import React from 'react';
 import ArrowIcon from './ArrowIcon';
 
-type ArrowsButtonProps = {
-  arrowsButtonClasses?: string;
-  handleArrowsButtonClick: () => void;
+type IconButtonProps = {
+  iconButtonClasses?: string;
+  handleIconButtonClick: () => void;
   iconLabel: string;
   iconType: string;
 };
 
-const ArrowsButton = ({
-  arrowsButtonClasses,
-  handleArrowsButtonClick,
+const IconButton = ({
+  iconButtonClasses,
+  handleIconButtonClick,
   iconLabel,
   iconType,
-}: ArrowsButtonProps) => {
+}: IconButtonProps) => {
   const arrowsIconLabel =
     iconLabel === 'previous' ? 'Previous arrow' : 'Next arrow';
   const arrowsIconType = iconType === 'left' ? 'left' : 'right';
   return (
     <button
       type="button"
-      className={arrowsButtonClasses}
-      onClick={handleArrowsButtonClick}
+      className={iconButtonClasses}
+      onClick={handleIconButtonClick}
     >
       <ArrowIcon iconLabel={arrowsIconLabel} iconType={arrowsIconType} />
     </button>
   );
 };
 
-export default ArrowsButton;
+export default IconButton;

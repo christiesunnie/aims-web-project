@@ -1,16 +1,16 @@
 import React from 'react';
-import HoursRange from './HoursRange';
-import DayMeetings from '../Events/DayMeetings';
+import HoursRange from '../../../UIMaterials/HoursRange/HoursRange';
+import Events from '../Events';
 
-type HoursCalendarProps = {
+type HourlyCalendarProps = {
   containerOffset: React.MutableRefObject<HTMLHeadingElement>;
   selectedDay: Date;
 };
 
-const HoursCalendar = ({
+const HourlyCalendar = ({
   containerOffset,
   selectedDay,
-}: HoursCalendarProps) => (
+}: HourlyCalendarProps) => (
   <div className="flex w-full flex-auto">
     <div className="w-14 flex-none bg-white ring-1 ring-gray-100" />
     <div className="grid flex-auto grid-cols-1 grid-rows-1">
@@ -23,10 +23,10 @@ const HoursCalendar = ({
           gridTemplateRows: '1.75rem repeat(288, minmax(0, 1fr)) auto',
         }}
       >
-        <DayMeetings selectedDay={selectedDay} />
+        <Events selectedDay={selectedDay} />
       </ol>
     </div>
   </div>
 );
 
-export default HoursCalendar;
+export default HourlyCalendar;

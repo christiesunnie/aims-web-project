@@ -1,8 +1,8 @@
 import React from 'react';
 import { Menu } from '@headlessui/react';
-import ArrowIcon from '../Buttons/ArrowIcon';
-import ArrowsButton from '../Buttons/ArrowsButton';
-import TransitionUI from '../../UI/Transition';
+import ArrowIcon from '../Button/ArrowIcon';
+import IconButton from '../Button/IconButton';
+import TransitionUI from '../TransitionUI/TransitionUI';
 import MenuItem from '../Menu/MenuItem';
 
 type MenuHeaderNavProps = {
@@ -21,9 +21,9 @@ const MenuHeaderNav = ({
         className="pointer-events-none absolute inset-0 rounded-md ring-1 ring-inset ring-gray-300"
         aria-hidden="true"
       />
-      <ArrowsButton
-        arrowsButtonClasses="flex items-center justify-center rounded-l-md py-2 pl-3 pr-4 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50"
-        handleArrowsButtonClick={() => handleSelectedDayClick('previous')}
+      <IconButton
+        iconButtonClasses="flex items-center justify-center rounded-l-md py-2 pl-3 pr-4 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50"
+        handleIconButtonClick={() => handleSelectedDayClick('previous')}
         iconLabel="previous"
         iconType="left"
       />
@@ -35,9 +35,9 @@ const MenuHeaderNav = ({
         Today
       </button>
       <span className="relative -mx-px h-5 w-px bg-gray-300 md:hidden" />
-      <ArrowsButton
-        arrowsButtonClasses="flex items-center justify-center rounded-r-md py-2 pl-4 pr-3 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50"
-        handleArrowsButtonClick={() => handleSelectedDayClick('next')}
+      <IconButton
+        iconButtonClasses="flex items-center justify-center rounded-r-md py-2 pl-4 pr-3 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50"
+        handleIconButtonClick={() => handleSelectedDayClick('next')}
         iconLabel="next"
         iconType="right"
       />

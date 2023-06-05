@@ -11,14 +11,14 @@ import {
   add,
   isSameMonth,
 } from 'date-fns';
-import DateHeader from '../Header/DateHeader';
-import MenuHeaderNav from '../Header/MenuHeaderNav';
-import MonthsCalendar from './MonthsCalendar';
+import DateHeader from '../../UIMaterials/Header/DateHeader';
+import MenuHeaderNav from '../../UIMaterials/Header/MenuHeaderNav';
+import MiniMonthNavigator from './Page/MiniMonthNavigator';
 // eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
-import HoursCalendar from './HoursCalendar';
-import WeeksCalendar from './WeeksCalendar';
+import HourlyCalendar from './Page/HourlyCalendar';
+import WeeklyCalendar from './Page/WeeklyCalendar';
 
-export default function DayViewCalendar() {
+export default function DayView() {
   const container = useRef<HTMLHeadingElement>(null!);
   const containerNav = useRef<HTMLHeadingElement>(null!);
   const containerOffset = useRef<HTMLHeadingElement>(null!);
@@ -96,18 +96,19 @@ export default function DayViewCalendar() {
       </header>
       <div className="isolate flex flex-auto overflow-hidden bg-white">
         <div ref={container} className="flex flex-auto flex-col overflow-auto">
-          <WeeksCalendar
+          {/* Week view on mobile */}
+          <WeeklyCalendar
             containerNav={containerNav}
             selectedDay={selectedDay}
             handleSelectedDayClick={(day: Date) => setSelectedDay(day)}
           />
-          <HoursCalendar
+          <HourlyCalendar
             containerOffset={containerOffset}
             selectedDay={selectedDay}
           />
         </div>
-        {/* Tablet + Desktop calendar view */}
-        <MonthsCalendar
+        {/* Month view on tablet + desktop */}
+        <MiniMonthNavigator
           daysOfMonth={daysOfMonth}
           selectedDay={selectedDay}
           selectedMonth={selectedMonth}

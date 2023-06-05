@@ -1,9 +1,9 @@
 import React from 'react';
 import { format } from 'date-fns';
-import ArrowsButton from '../Buttons/ArrowsButton';
-import DaysOfMonthCalendar from './DaysOfMonthCalendar';
+import IconButton from '../../../UIMaterials/Button/IconButton';
+import DaysOfMonth from '../../../UIMaterials/DaysOfMonth/DaysOfMonth';
 
-type MonthsCalendarProps = {
+type MiniMonthNavigatorProps = {
   // eslint-disable-next-line no-unused-vars
   handleMonthClick: (monthType: string) => void;
   daysOfMonth: Date[];
@@ -13,27 +13,27 @@ type MonthsCalendarProps = {
   handleSelectedDayClick: (day: Date) => void;
 };
 
-const MonthsCalendar = ({
+const MiniMonthNavigator = ({
   handleMonthClick,
   daysOfMonth,
   selectedDay,
   selectedMonth,
   handleSelectedDayClick,
-}: MonthsCalendarProps) => (
+}: MiniMonthNavigatorProps) => (
   <div className="hidden w-1/2 max-w-md flex-none border-l border-gray-100 px-8 py-10 md:block">
     <div className="flex items-center text-center text-gray-900">
-      <ArrowsButton
-        arrowsButtonClasses="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-        handleArrowsButtonClick={() => handleMonthClick('previous')}
+      <IconButton
+        iconButtonClasses="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+        handleIconButtonClick={() => handleMonthClick('previous')}
         iconLabel="previous"
         iconType="left"
       />
       <div className="flex-auto text-sm font-semibold">
         {format(selectedMonth, 'MMM yyyy')}
       </div>
-      <ArrowsButton
-        arrowsButtonClasses="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-        handleArrowsButtonClick={() => handleMonthClick('next')}
+      <IconButton
+        iconButtonClasses="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+        handleIconButtonClick={() => handleMonthClick('next')}
         iconLabel="next"
         iconType="right"
       />
@@ -47,7 +47,7 @@ const MonthsCalendar = ({
       <div>F</div>
       <div>S</div>
     </div>
-    <DaysOfMonthCalendar
+    <DaysOfMonth
       daysOfMonth={daysOfMonth}
       selectedMonth={selectedMonth}
       selectedDay={selectedDay}
@@ -56,4 +56,4 @@ const MonthsCalendar = ({
   </div>
 );
 
-export default MonthsCalendar;
+export default MiniMonthNavigator;

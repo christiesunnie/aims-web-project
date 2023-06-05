@@ -11,28 +11,23 @@ import {
   endOfWeek,
 } from 'date-fns';
 
-type WeeksCalendarProps = {
-  containerNav: React.MutableRefObject<HTMLHeadingElement>;
+type DaysOfWeekProps = {
   selectedDay: Date;
   // eslint-disable-next-line no-unused-vars
   handleSelectedDayClick: (day: Date) => void;
 };
 
-const WeeksCalendar = ({
-  containerNav,
+const DaysOfWeek = ({
   selectedDay,
   handleSelectedDayClick,
-}: WeeksCalendarProps) => {
+}: DaysOfWeekProps) => {
   const daysOfWeek = eachDayOfInterval({
     start: startOfWeek(selectedDay),
     end: endOfWeek(selectedDay),
   });
 
   return (
-    <div
-      ref={containerNav}
-      className="sticky top-0 z-10 grid flex-none grid-cols-7 bg-white text-xs text-gray-500 shadow ring-1 ring-black ring-opacity-5 md:hidden"
-    >
+    <>
       {daysOfWeek.map((day) => (
         <div
           key={Math.random()}
@@ -77,8 +72,8 @@ const WeeksCalendar = ({
           </span>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
-export default WeeksCalendar;
+export default DaysOfWeek;

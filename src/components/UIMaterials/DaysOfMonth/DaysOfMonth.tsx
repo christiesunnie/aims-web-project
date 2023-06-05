@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { format, isEqual, isSameMonth, isToday } from 'date-fns';
 
-type DaysOfMonthCalendarProps = {
+type DaysOfMonthProps = {
   daysOfMonth: Date[];
   selectedDay: Date;
   selectedMonth: Date;
@@ -11,12 +11,12 @@ type DaysOfMonthCalendarProps = {
   handleSelectedDayClick: (day: Date) => void;
 };
 
-const DaysOfMonthCalendar = ({
+const DaysOfMonth = ({
   daysOfMonth,
   selectedDay,
   selectedMonth,
   handleSelectedDayClick,
-}: DaysOfMonthCalendarProps) => (
+}: DaysOfMonthProps) => (
   <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-gray-200 text-sm shadow ring-1 ring-gray-200">
     {daysOfMonth.map((day, dayIdx) => (
       <button
@@ -69,4 +69,4 @@ const DaysOfMonthCalendar = ({
   </div>
 );
 
-export default DaysOfMonthCalendar;
+export default DaysOfMonth;

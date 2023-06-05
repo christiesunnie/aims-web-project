@@ -1,12 +1,12 @@
 import React from 'react';
 import { isSameDay, parseISO, intervalToDuration } from 'date-fns';
-import events from '../../data/data';
+import events from '../../../../utils/mocks/data';
 
-type DayMeetingsProps = {
+type EventsProps = {
   selectedDay: number | Date;
 };
 
-interface MeetingProps {
+interface EventProps {
   id: number;
   name: string;
   imageUrl: string;
@@ -26,34 +26,31 @@ interface DurationProps {
   years: number;
 }
 
-const DayMeetings = ({ selectedDay }: DayMeetingsProps) => {
-  const selectedDayMeetings = events.filter((meeting: MeetingProps) => {
-    const isTheSameDay = isSameDay(
-      parseISO(meeting.startDatetime),
-      selectedDay
-    );
+const Events = ({ selectedDay }: EventsProps) => {
+  const selectedDayEvents = events.filter((event: EventProps) => {
+    const isTheSameDay = isSameDay(parseISO(event.startDatetime), selectedDay);
     return isTheSameDay;
   });
 
-  const getMeetingDuration = (meeting: MeetingProps): number => {
-    const meetingDuration = intervalToDuration({
-      start: parseISO(meeting.startDatetime),
-      end: parseISO(meeting.endDatetime),
+  const getEventDuration = (event: EventProps): number => {
+    const eventDuration = intervalToDuration({
+      start: parseISO(event.startDatetime),
+      end: parseISO(event.endDatetime),
     }) as DurationProps;
-    const { minutes, hours } = meetingDuration;
+    const { minutes, hours } = eventDuration;
     return minutes / 60 + hours;
   };
 
-  const renderedSelectedDayMeetings = selectedDayMeetings.map((meeting) => (
+  const renderedSelectedDayEvents = selectedDayEvents.map((event) => (
     <li
       className="relative mt-px flex"
       style={{
         gridRow: `${
-          (parseISO(meeting.startDatetime).getMinutes() / 60 +
-            parseISO(meeting.startDatetime).getHours()) *
+          (parseISO(event.startDatetime).getMinutes() / 60 +
+            parseISO(event.startDatetime).getHours()) *
             12 +
           2
-        } / span ${getMeetingDuration(meeting) * 12}`,
+        } / span ${getEventDuration(event) * 12}`,
       }}
     >
       <a
@@ -61,17 +58,17 @@ const DayMeetings = ({ selectedDay }: DayMeetingsProps) => {
         className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 p-2 text-xs leading-5 hover:bg-blue-100"
       >
         <p className="order-1 font-semibold text-blue-700">
-          {meeting.description}
+          {event.description}
         </p>
         <p className="text-blue-500 group-hover:text-blue-700">
-          <time dateTime={meeting.startDatetime}>{meeting.start}</time>
+          <time dateTime={event.startDatetime}>{event.start}</time>
         </p>
       </a>
     </li>
   ));
 
   // eslint-disable-next-line consistent-return, react/jsx-no-useless-fragment
-  return <>{selectedDayMeetings.length > 0 && renderedSelectedDayMeetings}</>;
+  return <>{selectedDayEvents.length > 0 && renderedSelectedDayEvents}</>;
 };
 
-export default DayMeetings;
+export default Events;
