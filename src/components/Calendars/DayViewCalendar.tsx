@@ -11,7 +11,7 @@ import {
   add,
   isSameMonth,
 } from 'date-fns';
-import DateDetailHeader from '../Header/DateDetailHeader';
+import DateHeader from '../Header/DateHeader';
 import MenuHeaderNav from '../Header/MenuHeaderNav';
 import MonthsCalendar from './MonthsCalendar';
 // eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
@@ -88,7 +88,7 @@ export default function DayViewCalendar() {
   return (
     <div className="flex h-full flex-col">
       <header className="flex flex-none items-center justify-between border-b border-gray-200 px-6 py-4">
-        <DateDetailHeader selectedDay={selectedDay} />
+        <DateHeader selectedDay={selectedDay} />
         <MenuHeaderNav
           handleSelectedDayClick={handleSelectedDayClick}
           handleTodayClick={handleTodayClick}
