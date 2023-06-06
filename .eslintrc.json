@@ -51,6 +51,7 @@
     "no-unused-vars": "warn",
     "jsx-a11y/anchor-is-valid": "off",
     "@typescript-eslint/no-unused-vars": "error",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }
