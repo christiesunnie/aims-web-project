@@ -13,6 +13,7 @@
     "@types/node": "^20.2.5",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
+    "axios": "^1.4.0",
     "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -59,11 +60,15 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
+    "msw": "^1.2.1",
     "prettier": "2.8.8",
     "tailwindcss": "^3.3.2"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": "eslint --cache --fix",
     "src/**/*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

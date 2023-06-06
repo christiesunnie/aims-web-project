@@ -11,7 +11,7 @@
     // "noFallthroughCasesInSwitch": true,
     "module": "CommonJS",
     "moduleResolution": "node",
-    // "resolveJsonModule": true,
+    "resolveJsonModule": true,
     // "isolatedModules": true,
     // "noEmit": true,
     // // Base directory to resolve non-relative module names.

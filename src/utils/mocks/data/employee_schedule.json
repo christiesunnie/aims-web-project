@@ -1,0 +1,110 @@
+{
+  "shifts": [
+    {
+      "version": 1,
+      "date": "2023-05-29",
+      "id": 1,
+      "start": "2023-05-29",
+      "end": "2023-06-29",
+      "icon": "D1",
+      "label": "#(Traded)",
+      "notes": "Notes",
+      "comments": "Comments",
+      "person": {
+        "id": 11,
+        "number": 22,
+        "firstname": "First Name",
+        "lastname": "Last Name"
+      },
+      "segments": [
+        {
+          "id": 22,
+          "start": "2023-05-29",
+          "end": "2023-06-29",
+          "laborCategories": {
+            "referenceID": 123,
+            "laborString": "labor_string",
+            "name": "Name",
+            "value": "Value"
+          },
+          "orgjobref": {
+            "id": 123,
+            "string": "String"
+          }
+        }
+      ],
+      "segment": {
+        "transferString": "Transfer String",
+        "primaryOrgjobref": {
+          "root": "Root",
+          "businessUnit": "Business Unit",
+          "formerRegion": "Former Region",
+          "location": "Location",
+          "department": "Departement"
+        },
+        "orgjobref": {
+          "cba": "Cba",
+          "job": "Job"
+        },
+        "workrule": {
+          "id": 123,
+          "string": "String"
+        }
+      },
+      "relations": [{ "type": "Type" }]
+    }
+  ],
+  "paycode": [
+    {
+      "id": 1234,
+      "name": "Name",
+      "startTime": "2023-05-29",
+      "endTime": "2023-06-29",
+      "date": "2023-05-29",
+      "version": "Version",
+      "refId": 123,
+      "refType": "Ref Type",
+      "duration": "2023-05-29 12:00:00",
+      "transferString": "TRransfer String",
+      "person": {
+        "id": 1234,
+        "number": 3456,
+        "firstname": "First Name",
+        "lastname": "Last Name"
+      },
+      "relations": [
+        {
+          "type": "Type"
+        }
+      ],
+      "laborCategories": [
+        {
+          "refID": 123,
+          "laborString": "Labor String",
+          "name": "Name",
+          "value": "Value"
+        }
+      ],
+      "orgjobref": {
+        "id": 123,
+        "root": "Root",
+        "business unit": "Business Unit",
+        "former region": "Former Region",
+        "location": "Location",
+        "department": "Department",
+        "cba": "Cba",
+        "job": "Job"
+      }
+    }
+  ],
+  "scheduleDayList": [
+    {
+      "employeeId": 126,
+      "employeeNumber": "employee Number",
+      "hasShift": true,
+      "hasHoliday": true,
+      "hasPayCode": true,
+      "day": "2023-05-29"
+    }
+  ]
+}

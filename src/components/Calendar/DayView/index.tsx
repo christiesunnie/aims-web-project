@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 
 import {
   startOfToday,
@@ -64,6 +65,12 @@ export default function DayView() {
       })
     );
   };
+
+  useEffect(() => {
+    const url = 'http://localhost:3001/api/schedule';
+
+    axios.get(url).then((response) => console.log(response));
+  });
 
   useEffect(() => {
     // Day range of the selected month

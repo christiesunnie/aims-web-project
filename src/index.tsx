@@ -5,6 +5,11 @@ import { Provider } from 'react-redux';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
+import worker from './utils/mocks/browser';
+
+if (process.env.NODE_ENV === 'development') {
+  worker.start();
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root') as Element);
 root.render(

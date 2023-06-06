@@ -1,0 +1,89 @@
+{
+  "requestId": 123,
+  "createDateTime": "2023-05-29 12:00:00",
+  "symbol": "Symbol",
+  "requestType": "Request Type",
+  "requestStartDTM": "Request Start DTM",
+  "requestEndDTM": "RequestEnd DTM",
+  "uniqueRequestCount": "Unique Request Count",
+  "leaveType": "Bereavement Paid",
+  "orgId": "Org Id",
+  "requestCreator": {
+    "id": 1234,
+    "name": "Name"
+  },
+  "person": {
+    "id": 12345,
+    "number": 6493,
+    "firstname": "First Name",
+    "lastname": "Last Name"
+  },
+  "currentStatus": {
+    "symbolicId": 87645,
+    "name": "Name"
+  },
+  "requestSubType": {
+    "name": "Name",
+    "description": "Description"
+  },
+  "periods": [
+    {
+      "id": 34535,
+      "startDate": "2023-05-29",
+      "endDate": "2023-06-29",
+      "startTime": "2023-05-29 12:00:00",
+      "duration": 3.5,
+      "symbolicAmount": "100",
+      "paycode": {
+        "id": 345,
+        "name": "Name"
+      }
+    }
+  ],
+  "approvalPeriods": [
+    {
+      "id": 34534,
+      "startDate": "2023-05-29",
+      "endDate": "2023-06-29",
+      "startTime": "2023-05-29 12:00:00",
+      "duration": 1.5,
+      "symbolicAmount": "50",
+      "paycode": {
+        "id": 345,
+        "name": "Name"
+      }
+    }
+  ],
+  "nextValidStatuses": [
+    {
+      "symbolicId": "Symbolic Id",
+      "name": "Name"
+    }
+  ],
+
+  "commentNotes": [
+    {
+      "name": "Name",
+      "value": "Value"
+    }
+  ],
+  "questionResponse": [
+    {
+      "question": "Question",
+      "answer": "Answer",
+      "comment": "Comment"
+    }
+  ],
+  "requestStatusChanges": [
+    {
+      "fromStatus": {
+        "symbolicId": "DRAFT",
+        "name": "draft"
+      },
+      "toStatus": {
+        "SymbolicId": "SUBMITED",
+        "name": "Submited"
+      }
+    }
+  ]
+}
